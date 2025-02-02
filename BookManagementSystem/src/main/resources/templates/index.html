@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Book Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            background: #fff;
+            width: 100%;
+            max-width: 500px;
+        }
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+        }
+        .btn-primary {
+            background: #6a11cb;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            padding: 12px;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            background: #2575fc;
+        }
+        .btn-custom {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            color: #6a11cb;
+            border: 2px solid #6a11cb;
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-weight: bold;
+            transition: all 0.3s;
+            width: 100%;
+            text-decoration: none;
+        }
+        .btn-custom:hover {
+            background: #6a11cb;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card p-4">
+                    <h2 class="text-center text-dark fw-bold mb-3">📚 Book Management</h2>
+                    
+                    <p th:text="${succMsg}" class="text-success text-center fw-bold"></p>
+                    <p th:text="${errMsg}" class="text-danger text-center fw-bold"></p>
+
+                    <form th:action="@{/sBook}" th:object="${bookEntity}" method="post" class="row g-3" id="addBookForm">
+                        <input type="hidden" th:field="*{bookId}"/>
+
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Book Name</label>
+                            <input type="text" th:field="*{bookName}" class="form-control" required/>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Author</label>
+                            <input type="text" th:field="*{bookAuthor}" class="form-control" required/>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Price</label>
+                            <input type="number" th:field="*{bookPrice}" class="form-control" required/>
+                        </div>
+
+                        <div class="col-12 text-center mt-3">
+                            <button type="submit" class="btn btn-primary w-100">➕ Add Book</button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <a href="books" class="btn-custom">📖 Browse Books</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
